@@ -10,14 +10,14 @@ var express = require('express'),
 * */
 var port = process.env.PORT || 8080; //This is a standard setup. You can do this many ways. If you want deploy then you need the process.env.PORT
 /**
-* Middleware setup
+* Middleware setup, if 404 , can be navigated to 
 * These are functions that are run before running the functions that are attached to each 'route' such as server.get('/', function()...);
 * Middleware is one of the cornerstone attributes of Express
 * If we need to check if certain information is true before each routehandling function is run (user auth, handling errors, etc.) then you can
 * get middleware for that.
 * */
 server.use(logger);
-server.use(express.static(path.join(__dirname,'public')));
+server.use(express.static(path.join(__dirname,'public')));//both functions, make sure they run before the folllowing functions
 
 
 /**
@@ -47,4 +47,4 @@ server.get('/post', function(req, res){
 //settings that you want your server to have.
 server.listen(port, function(){
   console.log('Now listening on port '+ port);
-});
+});// server doesn't start before listen
